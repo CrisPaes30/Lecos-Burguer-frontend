@@ -20,6 +20,7 @@ const Cadastro = () => {
   const [sobrenome, setSobrenome] = useState("");
   const [email, setEmail] = useState("");
 
+  const [cep, setCep] = useState("");
   const [rua, setRua] = useState("");
   const [bairro, setBairro] = useState("");
   const [numero, setNumero] = useState("");
@@ -70,7 +71,8 @@ const Cadastro = () => {
       !rua ||
       !bairro ||
       !numero ||
-      !telefone
+      !telefone||
+      !cep
     ) {
       setErroCampos("Por favor, preencha todos os campos obrigatórios.");
       return;
@@ -98,6 +100,7 @@ const Cadastro = () => {
     console.log("Nome:", name);
     console.log("Sobrenome:", sobrenome);
     console.log("Email:", email);
+    console.log("Cep", cep)
     console.log("Rua:", rua);
     console.log("Bairro:", bairro);
     console.log("Número:", numero);
@@ -184,6 +187,13 @@ const Cadastro = () => {
               <form className="cadastro-fields" onSubmit={handleSubmitCpfTelefone}>
                 <input
                   type="text"
+                  placeholder="Cep"
+                  className="form-input"
+                  value={cep}
+                  onChange={(e) => setCep(e.target.value)}
+                />
+                <input
+                  type="text"
                   placeholder="Rua / Avenida"
                   className="form-input"
                   value={rua}
@@ -231,6 +241,7 @@ const Cadastro = () => {
                 </div>
               </form>
             )}
+            
             {formEtapa === 3 && (
               <form className="cadastro-fields" onSubmit={handleSubmitEndereco}>
                 <input
