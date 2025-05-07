@@ -14,6 +14,11 @@ const FormLogin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // excluir no futuro
+
+    name = "email@email.com"
+    senha = "1234"
+
     // Validação dos campos
     if (!name) {
       setError("O campo e-mail é obrigatório.");
@@ -65,7 +70,9 @@ const FormLogin = () => {
         </div>
 
         <button type="submit" className="form-button">
+         <Link to="/pedidos" className="form-link">
           Entrar
+          </Link>
         </button>
       </form>
     </div>
