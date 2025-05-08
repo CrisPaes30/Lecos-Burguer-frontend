@@ -1,17 +1,206 @@
-.burguerTopo {
+.container {
+    position: relative;
     width: 100%;
-    height: 45vh; /* Ocupa 30% da altura da tela */
+    height: 45vh; /* Ajuste para ocupar a parte superior */
+    background-color: #f0f4f8;
+  }
+  
+  .burguerTopo {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    opacity: 0.7; /* Esmaecimento da imagem */
     display: block;
-    margin: 0;
   }
   
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+  .logoCentral {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza o logo */
+    max-width: 10%; /* Ajuste o tamanho conforme necessário */
+    opacity: 0.9; /* Suavidade no logo */
   }
   
-  div {
-    height: 100%;
-  }
+  .nomeLeco {
+    position: absolute;
+    top: 90%; /* Ajuste para ficar logo abaixo do logo */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rex; /* Ajuste conforme necessário */
+    color: white;
+    font-weight: bold;
+}
+
+.status {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.aberto {
+  background-color: #28a745; /* Verde */
+}
+
+.fechado {
+  background-color: #dc3545; /* Vermelho */
+}
+
+.cardapio-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.cardapio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 24px; /* Aumente o valor conforme necessário */
+  margin-top: 20px;
+}
+
+.cardapio-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.cardapio-item:hover {
+  transform: translateY(-10px);
+}
+
+.cardapio-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+.cardapio-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* <- Alinha tudo para a esquerda */
+  text-align: left; /* <- Texto alinhado à esquerda */
+}
+
+.cardapio-nome {
+  font-size: 1.4rem; /* Aumenta o tamanho para dar mais destaque */
+  font-weight: bold;
+  margin: 0 0 8px 0; /* Adiciona margem inferior para separar da descrição */
+}
+
+.cardapio-descricao {
+  font-size: 1rem;
+  margin: 8px 0; /* Aumenta o espaçamento entre nome e descrição */
+}
+
+.cardapio-preco {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Garante que o preço e botão ocupem toda a linha */
+  margin-top: 16px; /* Um pouco mais de espaço depois da descrição */
+}
+
+.botao-comprar {
+  background-color: #facc15;
+  color: #000;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.botao-comprar:hover {
+  background-color: #eab308;
+}
+
+.menu-categorias {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.menu-categorias ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu-categorias li {
+  padding: 8px 15px;
+  border-radius: 6px;
+  background-color: #f0f4f8;
+  color: #333;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.menu-categorias li:hover {
+  background-color: #e0e4e8;
+}
+
+.cardapio-secao {
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f0f4f8;
+  border-radius: 8px;
+  scroll-margin-top: 60px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.cardapio-secao + .cardapio-secao {
+  margin-top: 20px;
+}
+
+.cardapio-secao::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: rgb(179, 133, 133);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.menu-categorias li {
+  cursor: pointer;
+}
+
+.menu-categorias li:hover {
+  background-color: #e0e4e8;
+}
+
+.cardapio-secao h3 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.cardapio-container h2, 
+.cardapio-secao h3 {
+  text-align: center;
+}
+
