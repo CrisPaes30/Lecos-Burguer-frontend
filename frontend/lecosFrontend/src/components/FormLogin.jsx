@@ -3,8 +3,8 @@ import "./FormLogin.css";
 import { Link } from 'react-router-dom';
 
 const FormLogin = () => {
-  const [name, setName] = useState("");
-  const [senha, setSenha] = useState("");
+  const [name, setName] = useState("cris@emai.com");
+  const [senha, setSenha] = useState("1234");
   const [error, setError] = useState(""); // estado para mensagem de erro
 
   const handleName = (e) => {
@@ -13,11 +13,6 @@ const FormLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // excluir no futuro
-
-    name = "email@email.com"
-    senha = "1234"
 
     // Validação dos campos
     if (!name) {
