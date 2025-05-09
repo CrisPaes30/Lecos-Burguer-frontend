@@ -427,3 +427,119 @@ html {
 .botao-lixeira:hover {
   transform: scale(1.2);
 }
+
+
+.item-carrinho-acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 10px;
+}
+
+.extras-lista li {
+  padding: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.extras-lista li:hover {
+  background-color: #f2f2f2;
+  border-radius: 4px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* escurece o fundo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* garantir que fique acima de tudo */
+}
+
+.modal-conteudo {
+  position: relative;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  animation: aparecer 0.3s ease;
+}
+
+.extras-lista {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.extras-lista li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.extras-lista li:hover {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-fechar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  z-index: 1001;
+}
+
+.modal-fechar:hover {
+  color: #e60000;
+}
+
+
+.item-principal {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.item-valor {
+  margin-left: 8px;
+}
+
+.item-extra {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-left: 10px;
+  color: #555;
+}
+
+.item-extra-valor {
+  margin-left: auto;
+  padding-left: 10px;
+}
+
+.botao-adicionar-extra {
+  margin-left: 10px; 
+}

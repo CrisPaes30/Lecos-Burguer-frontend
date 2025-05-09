@@ -17,7 +17,15 @@ import Guarana from "../assets/refrigerantes/guarana.jpg";
 import { useState, useEffect } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 
-const CardapioItem = ({ imagem, nome, descricao, preco, quantidade, incrementar, decrementar }) => {
+const CardapioItem = ({
+  imagem,
+  nome,
+  descricao,
+  preco,
+  quantidade,
+  incrementar,
+  decrementar,
+}) => {
   const [mostraControles, setMostraControles] = useState(false);
 
   const toggleControles = () => {
@@ -34,22 +42,21 @@ const CardapioItem = ({ imagem, nome, descricao, preco, quantidade, incrementar,
         <div className="cardapio-preco">
           <span>R$ {preco}</span>
           {quantidade > 0 ? (
-  <div className="controle-quantidade">
-    <button onClick={decrementar}>−</button>
-    <span>{quantidade}</span>
-    <button onClick={incrementar}>+</button>
-  </div>
-) : (
-  <button className="botao-carrinho" onClick={incrementar}>
-    <FaShoppingCart />
-  </button>
-)}
+            <div className="controle-quantidade">
+              <button onClick={decrementar}>−</button>
+              <span>{quantidade}</span>
+              <button onClick={incrementar}>+</button>
+            </div>
+          ) : (
+            <button className="botao-carrinho" onClick={incrementar}>
+              <FaShoppingCart />
+            </button>
+          )}
         </div>
       </div>
     </div>
   );
 };
-
 
 const scrollToSection = (sectionId) => {
   const element = document.getElementById(sectionId);
@@ -63,13 +70,15 @@ const itens = {
     {
       imagem: PromoFininho,
       nome: "PROMO Combo Fininho Queijudo",
-      descricao: "Nosso saboroso Fininho Queijudo + 1 refri de sua preferencia + Batata Pires (100g) (Peso da carne pré preparo)",
+      descricao:
+        "Nosso saboroso Fininho Queijudo + 1 refri de sua preferencia + Batata Pires (100g) (Peso da carne pré preparo)",
       preco: "37,00",
     },
     {
       imagem: PromoFinhinhoAcebolado,
       nome: "PROMO Combo Fininho Acebolado",
-      descricao: "Nosso saboroso Fininho Acebolado + 1 refri de sua preferencia + Batata Pires (100g) (Peso da carne pré preparo)",
+      descricao:
+        "Nosso saboroso Fininho Acebolado + 1 refri de sua preferencia + Batata Pires (100g) (Peso da carne pré preparo)",
       preco: "37,00",
     },
   ],
@@ -77,31 +86,36 @@ const itens = {
     {
       imagem: Queijudo,
       nome: "Queijudo",
-      descricao: "Burger de 160g com um disco delicioso de catupiry empanado e couve crispy com a base de maionese verde. (Peso da carne pré preparo)",
+      descricao:
+        "Burger de 160g com um disco delicioso de catupiry empanado e couve crispy com a base de maionese verde. (Peso da carne pré preparo)",
       preco: "35,00",
     },
     {
       imagem: Baconzin,
       nome: "Baconzin",
-      descricao: "Burger de 160g coberto por fatias de queijo cheddar e fatias de bacon, com a base do nosso molho coronel e fatias de cebola branca. (Peso da carne pré preparo)",
+      descricao:
+        "Burger de 160g coberto por fatias de queijo cheddar e fatias de bacon, com a base do nosso molho coronel e fatias de cebola branca. (Peso da carne pré preparo)",
       preco: "33,00",
     },
     {
       imagem: FininQueijudo,
       nome: "Fininho Queijudo",
-      descricao: "Dois hamburgers prensados com 100g cada, cobertos por fatias de queijo cheddar e uma base da nossa maionese verde. (Peso da carne pré preparo)",
+      descricao:
+        "Dois hamburgers prensados com 100g cada, cobertos por fatias de queijo cheddar e uma base da nossa maionese verde. (Peso da carne pré preparo)",
       preco: "33,00",
     },
     {
       imagem: FininAcebolado,
       nome: "Fininho Queijudo",
-      descricao: "Dois hamburgers de 100g prensados com cebola branca e cobertos por fatias de queijo cheddar com a base de maionese verde. (Peso da carne pré preparo)",
+      descricao:
+        "Dois hamburgers de 100g prensados com cebola branca e cobertos por fatias de queijo cheddar com a base de maionese verde. (Peso da carne pré preparo)",
       preco: "33,00",
     },
     {
       imagem: ChickenCebolinha,
       nome: "Chicken Cebolinha",
-      descricao: "Dois hamburgers de 100g prensados com cebola branca e cobertos por fatias de queijo cheddar com a base de maionese verde. (Peso da carne pré preparo)",
+      descricao:
+        "Dois hamburgers de 100g prensados com cebola branca e cobertos por fatias de queijo cheddar com a base de maionese verde. (Peso da carne pré preparo)",
       preco: "25,00",
     },
   ],
@@ -109,13 +123,15 @@ const itens = {
     {
       imagem: ComboQueijudo,
       nome: "Combo Queijudo",
-      descricao: "O grande Queijudo + 1 refri de sua preferencia + Batata Pires (100g) (Peso da carne pré preparo)",
+      descricao:
+        "O grande Queijudo + 1 refri de sua preferencia + Batata Pires (100g) (Peso da carne pré preparo)",
       preco: "47,00",
     },
     {
       imagem: ComboBaconzin,
       nome: "Combo Baconzin",
-      descricao: "O nosso delicioso Baconzin + 1 refri de sua preferencia + Batata Pires (100g) (Peso da carne pré preparo)",
+      descricao:
+        "O nosso delicioso Baconzin + 1 refri de sua preferencia + Batata Pires (100g) (Peso da carne pré preparo)",
       preco: "46,00",
     },
     {
@@ -168,6 +184,45 @@ const Pedido = () => {
   const [carrinho, setCarrinho] = useState({});
   const [mostrarResumo, setMostrarResumo] = useState(false);
 
+  const [mostrarModal, setMostrarModal] = useState(false);
+  const [itemSelecionado, setItemSelecionado] = useState(null);
+
+  useEffect(() => {
+    if (itemSelecionado) {
+      setMostrarModal(true);
+    }
+  }, [itemSelecionado]);
+
+  const handleAdicionarExtra = (nomeExtra) => {
+    const extra = itens.extras.find((e) => e.nome === nomeExtra);
+    if (!extra || !itemSelecionado) return;
+
+    setCarrinho((prev) => {
+      const novoCarrinho = { ...prev };
+      const nomePrincipal = itemSelecionado.nome;
+
+      if (!novoCarrinho[nomePrincipal]) return prev;
+
+      if (!novoCarrinho[nomePrincipal].extras) {
+        novoCarrinho[nomePrincipal].extras = [];
+      }
+
+      const existente = novoCarrinho[nomePrincipal].extras.find(
+        (e) => e.nome === extra.nome
+      );
+      if (existente) {
+        existente.quantidade += 1;
+      } else {
+        novoCarrinho[nomePrincipal].extras.push({ ...extra, quantidade: 1 });
+      }
+
+      return novoCarrinho;
+    });
+
+    setMostrarModal(false);
+    setItemSelecionado(null);
+  };
+
   useEffect(() => {
     const verificarHorario = () => {
       const agora = new Date();
@@ -175,9 +230,13 @@ const Pedido = () => {
       const horaAtual = agora.getHours();
       const minutosAtuais = agora.getMinutes();
       const diaValido =
-        diaSemana === 4 || diaSemana === 5 || diaSemana === 6 || diaSemana === 0;
+        diaSemana === 4 ||
+        diaSemana === 5 ||
+        diaSemana === 6 ||
+        diaSemana === 0;
       const horarioValido =
-        (horaAtual > 18 && horaAtual < 23) || (horaAtual === 23 && minutosAtuais === 0);
+        (horaAtual > 18 && horaAtual < 23) ||
+        (horaAtual === 23 && minutosAtuais === 0);
       setAberto(diaValido && horarioValido);
     };
 
@@ -196,7 +255,7 @@ const Pedido = () => {
       return novoCarrinho;
     });
   };
-  
+
   const decrementarItem = (item) => {
     setCarrinho((prev) => {
       const novoCarrinho = { ...prev };
@@ -210,7 +269,10 @@ const Pedido = () => {
     });
   };
 
-  const totalItens = Object.values(carrinho).reduce((acc, item) => acc + item.quantidade, 0);
+  const totalItens = Object.values(carrinho).reduce(
+    (acc, item) => acc + item.quantidade,
+    0
+  );
 
   const categorias = [
     { nome: "COMBO EM PROMO", id: "combo-promo" },
@@ -224,9 +286,14 @@ const Pedido = () => {
   return (
     <div className="container">
       {/* Carrinho fixo no topo direito */}
-      <div className="carrinho-topo" onClick={() => setMostrarResumo(!mostrarResumo)}>
+      <div
+        className="carrinho-topo"
+        onClick={() => setMostrarResumo(!mostrarResumo)}
+      >
         <FaShoppingCart size={24} />
-        {totalItens > 0 && <span className="carrinho-quantidade">{totalItens}</span>}
+        {totalItens > 0 && (
+          <span className="carrinho-quantidade">{totalItens}</span>
+        )}
       </div>
 
       {/* Conteúdo normal da página */}
@@ -245,45 +312,91 @@ const Pedido = () => {
       </div>
 
       {mostrarResumo && (
-  <div className="resumo-carrinho">
-    <h3>Seu Carrinho:</h3>
-    {Object.keys(carrinho).length === 0 ? (
-      <p>Seu carrinho está vazio</p>
-    ) : (
-      <>
-        <ul className="lista-carrinho">
-          {Object.entries(carrinho).map(([nome, item]) => (
-            <li key={nome} className="item-carrinho">
-              <span><strong>{item.quantidade}x</strong> {nome}</span>
-              <span><strong>R$ {(item.quantidade * parseFloat(item.preco.replace(',', '.'))).toFixed(2)}</strong></span>
-            </li>
-          ))}
-        </ul>
-        <div className="total-carrinho">
-          <strong>Total:</strong> R$ {Object.values(carrinho)
-            .reduce((acc, item) => acc + item.quantidade * parseFloat(item.preco.replace(',', '.')), 0)
-            .toFixed(2)}
-        </div>
-        <div className="acoes-carrinho">
-          <button className="botao-finalizar">Finalizar Pedido</button>
-          <div className="botao-lixeira" title="Limpar Carrinho" onClick={() => setCarrinho({})}>
-            🗑️
-          </div>
-        </div>
-      </>
-    )}
-  </div>
-)}
+        <div className="resumo-carrinho">
+          <h3>Seu Carrinho:</h3>
+          {Object.keys(carrinho).length === 0 ? (
+            <p>Seu carrinho está vazio</p>
+          ) : (
+            <>
+              <ul className="lista-carrinho">
+                {Object.entries(carrinho).map(([nome, item]) => (
+                  <li key={nome} className="item-carrinho">
+                  <div>
+                    <div className="item-principal">
+                      <strong>{item.quantidade}x</strong> {nome}
+                      <div className="item-valor">
+                        R$ {(item.quantidade * parseFloat(item.preco.replace(",", "."))).toFixed(2)}
+                      </div>
+                    </div>
+                
+                    {/* Render extras se houver */}
+                    {item.extras?.map((extra, i) => (
+                      <div key={i} className="item-extra">
+                        + {extra.quantidade}x {extra.nome} —
+                        <span className="item-extra-valor">
+                          R$ {(extra.quantidade * parseFloat(extra.preco.replace(",", "."))).toFixed(2)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                
+                  <div className="item-carrinho-acoes">
+                    <button
+                      className="botao-adicionar-extra"
+                      onClick={() => {
+                        setItemSelecionado(item);
+                        setMostrarModal(true);
+                      }}
+                      title="Adicionar item"
+                    >
+                      +
+                    </button>
+                  </div>
+                </li>
+                
+                ))}
+              </ul>
 
+              <div className="total-carrinho">
+                <strong>Total:</strong> R${" "}
+                {Object.values(carrinho).reduce((acc, item) => {
+                  const extrasTotal =
+                    item.extras?.reduce(
+                      (eAcc, extra) =>
+                        eAcc +
+                        parseFloat(extra.preco.replace(",", ".")) *
+                          extra.quantidade,
+                      0
+                    ) || 0;
+
+                  return (
+                    acc +
+                    item.quantidade * parseFloat(item.preco.replace(",", ".")) +
+                    extrasTotal
+                  );
+                }, 0)}
+              </div>
+              <div className="acoes-carrinho">
+                <button className="botao-finalizar">Finalizar Pedido</button>
+                <div
+                  className="botao-lixeira"
+                  title="Limpar Carrinho"
+                  onClick={() => setCarrinho({})}
+                >
+                  🗑️
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      )}
 
       <div className="cardapio-container">
         <h2>Conheça nosso cardápio</h2>
         <nav className="menu-categorias">
           <ul>
             {categorias.map((categoria) => (
-              <li key={categoria.id}>
-                {categoria.nome}
-              </li>
+              <li key={categoria.id}>{categoria.nome}</li>
             ))}
           </ul>
         </nav>
@@ -294,20 +407,43 @@ const Pedido = () => {
             <div className="cardapio-grid">
               {itens[categoria.id]?.map((item, index) => (
                 <CardapioItem
-                key={index}
-                imagem={item.imagem}
-                nome={item.nome}
-                descricao={item.descricao}
-                preco={item.preco}
-                quantidade={carrinho[item.nome]?.quantidade || 0}
-                incrementar={() => incrementarItem(item)}
-                decrementar={() => decrementarItem(item)}
-              />
+                  key={index}
+                  imagem={item.imagem}
+                  nome={item.nome}
+                  descricao={item.descricao}
+                  preco={item.preco}
+                  quantidade={carrinho[item.nome]?.quantidade || 0}
+                  incrementar={() => incrementarItem(item)}
+                  decrementar={() => decrementarItem(item)}
+                />
               ))}
             </div>
           </div>
         ))}
       </div>
+      {mostrarModal && (
+        <div className="modal-overlay" onClick={() => setMostrarModal(false)}>
+          <div className="modal-conteudo" onClick={(e) => e.stopPropagation()}>
+            <span
+              className="modal-fechar"
+              onClick={() => setMostrarModal(false)}
+            >
+              ×
+            </span>
+            <h3>Adicionais para: {itemSelecionado?.nome}</h3>
+            <ul className="extras-lista">
+              {itens.extras.map((extra) => (
+                <li
+                  key={extra.nome}
+                  onClick={() => handleAdicionarExtra(extra.nome)}
+                >
+                  + {extra.nome} — R$ {extra.preco}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
