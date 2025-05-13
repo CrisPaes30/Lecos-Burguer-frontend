@@ -1,8 +1,8 @@
 import "./Login.css";
 import { useRef, useEffect } from "react";
-import FormLogin from "./FormLogin";
+import FormLogin from "../FormLogin/FormLogin";
 import Lottie from "lottie-react";
-import animacao from "../assets/Anim_burguer_v2.json";
+import animacao from "../../assets/Anim_burguer_v2.json";
 
 function Login() {
   const lottieRef = useRef();

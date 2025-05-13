@@ -1,8 +1,8 @@
 // App.jsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './components/Login';
-import Cadastro from './components/Cadastro';
-import Pedido from './components/Pedido';
+import Login from './components/Login/Login';
+import Cadastro from './components/Cadastro/Cadastro';
+import Pedido from './components/Pedido/Pedido';
 
 function App() {
   return (
