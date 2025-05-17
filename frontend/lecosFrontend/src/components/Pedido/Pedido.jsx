@@ -41,14 +41,20 @@ const Pedido = () => {
 
   const abrirModalProduto = (nomeItem) => {
     const item = Object.values(itens).flat().find(i => i.nome === nomeItem);
+  
     const isCombo = ["combo-promo", "combos"].some(cat =>
-      itens[cat].some(prod => prod.nome === nomeItem)
+      itens[cat]?.some(prod => prod.nome === nomeItem)
     );
+  
+    const isLanche = ["lanches"].some(cat =>
+      itens[cat]?.some(prod => prod.nome === nomeItem)
+    );
+  
     if (item) {
-      setProdutoModal({ ...item, isCombo });
+      setProdutoModal({ ...item, isCombo, isLanche });
     }
   };
-
+  
   const incrementarItem = (item) => {
     setCarrinho((prev) => {
       const novo = { ...prev };

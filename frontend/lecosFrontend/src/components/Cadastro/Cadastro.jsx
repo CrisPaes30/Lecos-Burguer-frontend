@@ -138,7 +138,7 @@ const Cadastro = () => {
       <div className="background-logo"></div>
       <div className="Cadastro">
         {!mostrarForm && !mostrarMensagemSenha && !mostrarFormSenha && (
-          <div className="intro-text">
+          <div className="intro-text" style={{ fontFamily: "Rock Salt, cursive" }}>
             <h1>{frases[etapaTexto - 1]}</h1>
           </div>
         )}
