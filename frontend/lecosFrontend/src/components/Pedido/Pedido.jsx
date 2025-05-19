@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import CardapioItem from "../CardapioItem/CardapioItem";
 import CarrinhoResumo from "../CarrinhoResumo/CarrinhoResumo";
@@ -11,6 +11,9 @@ const Pedido = () => {
   const [carrinho, setCarrinho] = useState([]);
   const [mostrarResumo, setMostrarResumo] = useState(false);
   const [produtoModal, setProdutoModal] = useState(null);
+
+  const carrinhoTopoRef = useRef(null);
+  const resumoCarrinhoRef = useRef(null);
 
   useEffect(() => {
     if (produtoModal) {
@@ -39,22 +42,45 @@ const Pedido = () => {
     return () => clearInterval(intervalo);
   }, []);
 
+  // Fechar o resumo do carrinho quando clicar fora dele
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        mostrarResumo &&
+        resumoCarrinhoRef.current &&
+        !resumoCarrinhoRef.current.contains(event.target) &&
+        carrinhoTopoRef.current &&
+        !carrinhoTopoRef.current.contains(event.target)
+      ) {
+        setMostrarResumo(false);
+      }
+    };
+
+    if (mostrarResumo) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [mostrarResumo]);
+
   const abrirModalProduto = (nomeItem) => {
     const item = Object.values(itens).flat().find(i => i.nome === nomeItem);
-  
+
     const isCombo = ["combo-promo", "combos"].some(cat =>
       itens[cat]?.some(prod => prod.nome === nomeItem)
     );
-  
+
     const isLanche = ["lanches"].some(cat =>
       itens[cat]?.some(prod => prod.nome === nomeItem)
     );
-  
+
     if (item) {
       setProdutoModal({ ...item, isCombo, isLanche });
     }
   };
-  
+
   const incrementarItem = (item) => {
     setCarrinho((prev) => {
       const novo = { ...prev };
@@ -80,7 +106,7 @@ const Pedido = () => {
     setMostrarResumo(true);
     setProdutoModal(null);
   };
-  
+
 
   const categorias = [
     { nome: "COMBO EM PROMO", id: "combo-promo" },
@@ -100,6 +126,7 @@ const Pedido = () => {
     <div className="container">
       {/* Carrinho flutuante */}
       <div
+        ref={carrinhoTopoRef}
         className="carrinho-topo"
         onClick={() => setMostrarResumo(!mostrarResumo)}
       >
@@ -127,6 +154,7 @@ const Pedido = () => {
       {/* Resumo do carrinho */}
       {mostrarResumo && (
         <CarrinhoResumo
+          ref={resumoCarrinhoRef}
           carrinho={carrinho}
           setCarrinho={setCarrinho}
           setMostrarResumo={setMostrarResumo}
