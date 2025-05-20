@@ -1,10 +1,12 @@
-const CarrinhoResumo = ({ carrinho, setCarrinho, setMostrarResumo }) => {
+import { forwardRef } from 'react';
+
+const CarrinhoResumo = forwardRef(({ carrinho, setCarrinho, setMostrarResumo }, ref) => {
   const precoExtraFixo = 6;
 
   const total = carrinho.reduce((acc, item) => acc + item.total, 0);
 
   return (
-    <div className="resumo-carrinho">
+    <div ref={ref} className="resumo-carrinho">
       <h3>Seu Carrinho:</h3>
 
       {Object.keys(carrinho).length === 0 ? (
@@ -70,6 +72,6 @@ const CarrinhoResumo = ({ carrinho, setCarrinho, setMostrarResumo }) => {
       )}
     </div>
   );
-};
+});
 
 export default CarrinhoResumo;

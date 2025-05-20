@@ -4,7 +4,7 @@
     height: 45vh; /* Ajuste para ocupar a parte superior */
     background-color: #f0f4f8;
   }
-  
+
   .burguerTopo {
     width: 100%;
     height: 100%;
@@ -12,7 +12,7 @@
     opacity: 0.7; /* Esmaecimento da imagem */
     display: block;
   }
-  
+
   .logoCentral {
     position: absolute;
     top: 50%;
@@ -21,7 +21,7 @@
     max-width: 10%; /* Ajuste o tamanho conforme necessário */
     opacity: 0.9; /* Suavidade no logo */
   }
-  
+
   .nomeLeco {
     position: absolute;
     top: 90%; /* Ajuste para ficar logo abaixo do logo */
@@ -199,7 +199,7 @@ html {
   scroll-behavior: smooth;
 }
 
-.cardapio-container h2, 
+.cardapio-container h2,
 .cardapio-secao h3 {
   text-align: center;
 }
@@ -289,14 +289,14 @@ html {
 
 .resumo-carrinho {
   position: fixed;
-  top: 70px;
+  top: 60px;
   right: 20px;
   background-color: white;
   padding: 20px;
-  box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
-  border-radius: 10px;
-  width: 250px;
-  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  width: 300px;
+  z-index: 1000;
 }
 
 .resumo-carrinho h3 {
@@ -310,18 +310,6 @@ html {
 
 .resumo-carrinho li {
   margin-bottom: 8px;
-}
-
-.resumo-carrinho {
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  width: 300px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  padding: 20px;
-  z-index: 1000;
 }
 
 .lista-carrinho {
@@ -363,18 +351,6 @@ html {
   background-color: #059669;
 }
 
-
-.resumo-carrinho {
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  width: 300px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  padding: 20px;
-  z-index: 1000;
-}
 
 .lista-carrinho {
   list-style: none;
@@ -562,7 +538,7 @@ body.modal-aberto {
 }
 
 .botao-adicionar-extra {
-  margin-left: 10px; 
+  margin-left: 10px;
 }
 
 /* Modal de visualização do produto */
@@ -812,6 +788,3 @@ body.modal-aberto {
   color: #facc15;
   margin-left: 12px;
 }
-
-
-
