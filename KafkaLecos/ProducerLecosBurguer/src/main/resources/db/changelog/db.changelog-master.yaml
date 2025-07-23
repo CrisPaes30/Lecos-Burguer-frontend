@@ -1,9 +1,0 @@
-databaseChangeLog:
-  - include:
-      file: db/changelog/db.changelog-001-create-clientes.yaml
-  - include:
-      file: db/changelog/db.changelog-002-create-complementos.yaml
-  - include:
-      file: db/changelog/db.changelog-003-create-produtos.yaml
-  - include:
-      file: db/changelog/db.changelog-004-create-status-pedido.yaml
