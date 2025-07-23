@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-lb-clientes
+      author: cristian.paes
+      changes:
+        - createSequence:
+            sequenceName: clientes_sequency
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: lb_clientes
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: numero_pedido
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: contato
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: nome_cliente
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: endereco
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: complemento
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: bairro
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: referencia
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cidade
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true

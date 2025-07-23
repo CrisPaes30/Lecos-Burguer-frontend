@@ -1,0 +1,123 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-retry-pedidos-and-produtos-producer
+      author: cristian.paes
+      changes:
+        # Tabela retry_pedidos
+        - createTable:
+            tableName: retry_pedidos
+            columns:
+              - column:
+                  name: id_retry
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: cliente
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: contato
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: endereco
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: complemento_endereco
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: bairro
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cidade
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: referencia
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: forma_pagamento
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: taxa_entrega
+                  type: DECIMAL(10,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: preco_total
+                  type: DECIMAL(10,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: payload
+                  type: CLOB # JSON como texto para Oracle (Postgres: JSONB)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+        # Tabela retry_pedido_produtos
+        - createTable:
+            tableName: retry_pedido_produtos
+            columns:
+              - column:
+                  name: id_produto
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: id_retry
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nome_produto
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: complemento_lanche
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: observacao
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: preco_unitario
+                  type: DECIMAL(10,2)
+                  constraints:
+                    nullable: true
+
+        # FK de retry_pedido_produtos -> retry_pedidos
+        - addForeignKeyConstraint:
+            constraintName: fk_retry_produtos_pedido
+            baseTableName: retry_pedido_produtos
+            baseColumnNames: id_retry
+            referencedTableName: retry_pedidos
+            referencedColumnNames: id_retry
+            onDelete: CASCADE

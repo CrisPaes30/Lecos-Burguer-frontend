@@ -28,7 +28,6 @@ html {
 
 .cadastro-form {
   position: relative;
-  z-index: 2;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.2);
@@ -163,4 +162,83 @@ p {
 .form-checkbox {
   font-size: 1rem;
   font-family: 'Courier New', Courier, monospace;
+}
+
+.senha-requisitos {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.senha-requisitos p {
+  margin: 2px 0;
+}
+
+.valido {
+  color: green;
+}
+
+.invalido {
+  color: red;
+}
+
+.barra-forca {
+  width: 100%;
+  height: 5px;
+  background: #ddd;
+  margin-top: 5px;
+  border-radius: 3px;
+}
+.barra-forca .forca {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+.forca.fraca {
+  background: red;
+}
+.forca.media {
+  background: orange;
+}
+.forca.forte {
+  background: green;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  color: white;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out; 
+}
+
+.spinner-large {
+  border: 8px solid rgba(255, 255, 255, 0.3);
+  border-top: 8px solid #ffffff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px; /* 👈 espaço entre spinner e texto */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 1.5rem; /* 👈 aumenta o tamanho */
+  color: #fff; /* 👈 branco puro */
+  text-align: center;
+  margin-top: 15px; /* espaçamento entre spinner e texto */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 👈 leve sombra pra destacar */
 }

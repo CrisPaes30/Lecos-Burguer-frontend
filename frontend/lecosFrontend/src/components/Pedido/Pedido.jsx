@@ -4,14 +4,15 @@ import CardapioItem from "../CardapioItem/CardapioItem";
 import CarrinhoResumo from "../CarrinhoResumo/CarrinhoResumo";
 import itens from "../../data/cardapio";
 import ModalProduto from "../ModalProduto/ModalProduto";
+import { useCarrinho } from "../Finalizar/CarrinhoContext";
 import "./Pedido.css";
 
 const Pedido = () => {
   const [aberto, setAberto] = useState(false);
-  const [carrinho, setCarrinho] = useState([]);
   const [mostrarResumo, setMostrarResumo] = useState(false);
   const [produtoModal, setProdutoModal] = useState(null);
 
+  const { carrinho, setCarrinho } = useCarrinho(); // 👉 usa contexto
   const carrinhoTopoRef = useRef(null);
   const resumoCarrinhoRef = useRef(null);
 
@@ -23,10 +24,17 @@ const Pedido = () => {
     }
   }, [produtoModal]);
 
+  const scrollToCategoria = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   useEffect(() => {
     const verificarHorario = () => {
       const agora = new Date();
-      const dia = agora.getDay(); // 0 = domingo
+      const dia = agora.getDay();
       const hora = agora.getHours();
       const minuto = agora.getMinutes();
 
@@ -42,7 +50,6 @@ const Pedido = () => {
     return () => clearInterval(intervalo);
   }, []);
 
-  // Fechar o resumo do carrinho quando clicar fora dele
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -57,48 +64,33 @@ const Pedido = () => {
     };
 
     if (mostrarResumo) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [mostrarResumo]);
 
   const abrirModalProduto = (nomeItem) => {
-    const item = Object.values(itens).flat().find(i => i.nome === nomeItem);
+    const item = Object.values(itens).flat().find((i) => i.nome === nomeItem);
 
-    const isCombo = ["combo-promo", "combos"].some(cat =>
-      itens[cat]?.some(prod => prod.nome === nomeItem)
+    const isCombo = ["combo-promo", "combos"].some((cat) =>
+      itens[cat]?.some((prod) => prod.nome === nomeItem)
     );
-
-    const isLanche = ["lanches"].some(cat =>
-      itens[cat]?.some(prod => prod.nome === nomeItem)
+    
+    const isLanche = ["lanches"].some((cat) =>
+      itens[cat]?.some((prod) => prod.nome === nomeItem)
     );
-
+    
+    const isSimples = ["porcoes", "refrigerantes", "extras"].some((cat) =>
+      itens[cat]?.some((prod) => prod.nome === nomeItem)
+    );
+    
     if (item) {
-      setProdutoModal({ ...item, isCombo, isLanche });
+      setProdutoModal({ ...item, isCombo, isLanche, isSimples });
     }
-  };
-
-  const incrementarItem = (item) => {
-    setCarrinho((prev) => {
-      const novo = { ...prev };
-      if (!novo[item.nome]) novo[item.nome] = { ...item, quantidade: 0 };
-      novo[item.nome].quantidade += 1;
-      return novo;
-    });
-  };
-
-  const decrementarItem = (item) => {
-    setCarrinho((prev) => {
-      const novo = { ...prev };
-      if (novo[item.nome]) {
-        novo[item.nome].quantidade -= 1;
-        if (novo[item.nome].quantidade <= 0) delete novo[item.nome];
-      }
-      return novo;
-    });
+    
   };
 
   const adicionarAoCarrinho = (item) => {
@@ -106,7 +98,6 @@ const Pedido = () => {
     setMostrarResumo(true);
     setProdutoModal(null);
   };
-
 
   const categorias = [
     { nome: "COMBO EM PROMO", id: "combo-promo" },
@@ -117,10 +108,7 @@ const Pedido = () => {
     { nome: "EXTRAS", id: "extras" },
   ];
 
-  const totalItens = Object.values(carrinho).reduce(
-    (acc, item) => acc + item.quantidade,
-    0
-  );
+  const totalItens = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
 
   return (
     <div className="container">
@@ -155,8 +143,6 @@ const Pedido = () => {
       {mostrarResumo && (
         <CarrinhoResumo
           ref={resumoCarrinhoRef}
-          carrinho={carrinho}
-          setCarrinho={setCarrinho}
           setMostrarResumo={setMostrarResumo}
         />
       )}
@@ -176,7 +162,9 @@ const Pedido = () => {
         <nav className="menu-categorias">
           <ul>
             {categorias.map((cat) => (
-              <li key={cat.id}>{cat.nome}</li>
+              <li key={cat.id} onClick={() => scrollToCategoria(cat.id)}>
+              {cat.nome}
+            </li>
             ))}
           </ul>
         </nav>
@@ -192,9 +180,36 @@ const Pedido = () => {
                   nome={item.nome}
                   descricao={item.descricao}
                   preco={item.preco}
-                  quantidade={carrinho[item.nome]?.quantidade || 0}
-                  incrementar={() => incrementarItem(item)}
-                  decrementar={() => decrementarItem(item)}
+                  quantidade={
+                    carrinho.find((i) => i.nome === item.nome)?.quantidade || 0
+                  }
+                  incrementar={() =>
+                    setCarrinho((prev) => {
+                      const copy = [...prev];
+                      const found = copy.find((i) => i.nome === item.nome);
+                      if (found) {
+                        found.quantidade += 1;
+                      } else {
+                        copy.push({ ...item, quantidade: 1 });
+                      }
+                      return copy;
+                    })
+                  }
+                  decrementar={() =>
+                    setCarrinho((prev) => {
+                      const copy = [...prev];
+                      const foundIndex = copy.findIndex(
+                        (i) => i.nome === item.nome
+                      );
+                      if (foundIndex >= 0) {
+                        copy[foundIndex].quantidade -= 1;
+                        if (copy[foundIndex].quantidade <= 0) {
+                          copy.splice(foundIndex, 1);
+                        }
+                      }
+                      return copy;
+                    })
+                  }
                   onAbrirModal={abrirModalProduto}
                 />
               ))}

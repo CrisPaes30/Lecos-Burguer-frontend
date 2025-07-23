@@ -1,0 +1,14 @@
+.botao-remover-item {
+    background: none;
+    border: none;
+    color: #dc3545; /* vermelho */
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: color 0.2s ease;
+  }
+  
+  .botao-remover-item:hover {
+    color: #b02a37; /* vermelho mais escuro */
+  }
+  

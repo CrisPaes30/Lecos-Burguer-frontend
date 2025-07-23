@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-create-lb-complementos
+      author: cristian.paes
+      changes:
+        - createSequence:
+            sequenceName: complementos_sequency
+            startValue: 1
+            incrementBy: 1
+
+        - createTable:
+            tableName: lb_complementos
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: numero_pedido
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: complemento_lanche
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: grupo_complemento
+                  type: BIGINT
+                  constraints:
+                    nullable: true
