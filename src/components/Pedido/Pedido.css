@@ -1,0 +1,790 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 45vh; /* Ajuste para ocupar a parte superior */
+    background-color: #f0f4f8;
+  }
+
+  .burguerTopo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7; /* Esmaecimento da imagem */
+    display: block;
+  }
+
+  .logoCentral {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza o logo */
+    max-width: 10%; /* Ajuste o tamanho conforme necessário */
+    opacity: 0.9; /* Suavidade no logo */
+  }
+
+  .nomeLeco {
+    position: absolute;
+    top: 90%; /* Ajuste para ficar logo abaixo do logo */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rex; /* Ajuste conforme necessário */
+    color: white;
+    font-weight: bold;
+}
+
+.status {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.aberto {
+  background-color: #28a745; /* Verde */
+}
+
+.fechado {
+  background-color: #dc3545; /* Vermelho */
+}
+
+.cardapio-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.cardapio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 24px; /* Aumente o valor conforme necessário */
+  margin-top: 20px;
+}
+
+.cardapio-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.cardapio-item:hover {
+  transform: translateY(-10px);
+}
+
+.cardapio-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+.cardapio-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* <- Alinha tudo para a esquerda */
+  text-align: left; /* <- Texto alinhado à esquerda */
+}
+
+.cardapio-nome {
+  font-size: 1.4rem; /* Aumenta o tamanho para dar mais destaque */
+  font-weight: bold;
+  margin: 0 0 8px 0; /* Adiciona margem inferior para separar da descrição */
+}
+
+.cardapio-descricao {
+  font-size: 1rem;
+  margin: 8px 0; /* Aumenta o espaçamento entre nome e descrição */
+}
+
+.cardapio-preco {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Garante que o preço e botão ocupem toda a linha */
+  margin-top: 16px; /* Um pouco mais de espaço depois da descrição */
+}
+
+.botao-comprar {
+  background-color: #facc15;
+  color: #000;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.botao-comprar:hover {
+  background-color: #eab308;
+}
+
+.menu-categorias {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.menu-categorias ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu-categorias li {
+  padding: 8px 15px;
+  border-radius: 6px;
+  background-color: #f0f4f8;
+  color: #333;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.menu-categorias li:hover {
+  background-color: #e0e4e8;
+}
+
+.cardapio-secao {
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f0f4f8;
+  border-radius: 8px;
+  scroll-margin-top: 60px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.cardapio-secao + .cardapio-secao {
+  margin-top: 20px;
+}
+
+.cardapio-secao::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: rgb(179, 133, 133);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.menu-categorias li {
+  cursor: pointer;
+}
+
+.menu-categorias li:hover {
+  background-color: #e0e4e8;
+}
+
+.cardapio-secao h3 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.cardapio-container h2,
+.cardapio-secao h3 {
+  text-align: center;
+}
+
+.botao-carrinho {
+  background-color: #facc15;
+  color: #000;
+  font-weight: bold;
+  padding: 8px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.botao-carrinho:hover {
+  background-color: #eab308;
+}
+
+.controle-quantidade {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 14px;
+  gap: 20px;
+  font-size: 1.2rem;
+}
+
+.controle-quantidade button {
+  background-color: #facc15;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+}
+
+.controle-quantidade button:hover {
+  background-color: #eab308;
+}
+
+.controle-quantidade span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.carrinho-topo {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #facc15;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carrinho-quantidade {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resumo-carrinho {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  width: 300px;
+  z-index: 1000;
+}
+
+.resumo-carrinho h3 {
+  margin-bottom: 10px;
+}
+
+.resumo-carrinho ul {
+  list-style: none;
+  padding: 0;
+}
+
+.resumo-carrinho li {
+  margin-bottom: 8px;
+}
+
+.lista-carrinho {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-carrinho {
+  background: #f9f9f9;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-carrinho {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  text-align: right;
+}
+
+.botao-finalizar {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-finalizar:hover {
+  background-color: #059669;
+}
+
+
+.lista-carrinho {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-carrinho {
+  background: #f9f9f9;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-carrinho {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  text-align: right;
+}
+
+.acoes-carrinho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.botao-finalizar {
+  flex: 1;
+  padding: 10px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-finalizar:hover {
+  background-color: #059669;
+}
+
+.botao-lixeira {
+  margin-left: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.botao-lixeira:hover {
+  transform: scale(1.2);
+}
+
+
+.item-carrinho-acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 10px;
+}
+
+.extras-lista li {
+  padding: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.extras-lista li:hover {
+  background-color: #f2f2f2;
+  border-radius: 4px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  overflow: hidden;         /* 🆕 evita scroll na overlay */
+}
+
+.modal-conteudo {
+  position: relative;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;           /* 🆕 limita altura do modal */
+  overflow-y: auto;           /* 🆕 ativa rolagem interna */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  animation: aparecer 0.3s ease;
+  text-align: center;
+}
+
+body.modal-aberto {
+  overflow: hidden;
+}
+
+.modal-divisor {
+  width: 100%;
+  height: 2px;
+  background-color: #ccc;
+  margin: 10px auto 15px auto;
+  border-radius: 2px;
+}
+
+.extras-lista {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.extras-lista li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.extras-lista li:hover {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-fechar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  z-index: 1001;
+}
+
+.modal-fechar:hover {
+  color: #e60000;
+}
+
+
+.item-principal {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.item-valor {
+  margin-left: 8px;
+}
+
+.item-extra {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-left: 10px;
+  color: #555;
+}
+
+.item-extra-valor {
+  margin-left: auto;
+  padding-left: 10px;
+}
+
+.botao-adicionar-extra {
+  margin-left: 10px;
+}
+
+/* Modal de visualização do produto */
+.modal-produto-imagem {
+  display: block;
+  margin: 0 auto 15px auto; /* Centraliza horizontalmente e dá espaçamento abaixo */
+  max-width: 100%;
+  width: 250px; /* Ou ajuste conforme o tamanho desejado */
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.modal-produto-nome {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.modal-produto-descricao {
+  font-size: 1rem;
+  color: #444;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+
+.combo-opcoes {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.combo-bloco {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: none;
+}
+
+.combo-bloco legend {
+  font-weight: bold;
+  background-color: #222;
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* 🔥 Faz ocupar toda a largura do modal */
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.combo-bloco label:not(.label-extra) {
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.combo-bloco label:last-child {
+  border-bottom: none;
+}
+
+.combo-bloco input[type="radio"] {
+  margin-right: 8px;
+}
+
+.obrigatorio {
+  font-size: 0.85rem;
+  color: #facc15;
+  margin-left: 12px;
+}
+
+.combo-bloco-extras .label-extra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px;
+}
+
+.combo-bloco-extras .label-extra input {
+  flex-shrink: 0;
+}
+
+.combo-bloco-extras .info-extra {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.combo-bloco-extras .descricao-extra {
+  flex: 1;
+  text-align: left;
+}
+
+.combo-bloco-extras .opcao-valor {
+  font-weight: bold;
+  color: #10b981;
+  white-space: nowrap;
+}
+
+.campo-observacao {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: none;
+  box-sizing: border-box;
+  margin-bottom: 4px;
+}
+
+.contador-caracteres {
+  text-align: right;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.quantidade-e-finalizar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px; /* diminui o espaço entre os elementos */
+  margin-top: 20px;
+}
+
+.controle-quantidade {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.controle-quantidade button {
+  padding: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.controle-quantidade span {
+  width: 40px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.botao-adicionar-final {
+  padding: 16px 20px;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+  width: 250px;
+}
+
+.botao-adicionar-final:hover {
+  background-color: #333;
+}
+
+.modal-acoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px; /* reduzido */
+  gap: 12px;
+}
+
+.botao-adicionar-modal {
+  flex: 1;
+  padding: 14px 20px;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-adicionar-modal:hover {
+  background-color: #333;
+}
+
+.modal-contador {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 12px;
+  gap: 16px;
+  font-size: 1.2rem;
+}
+
+.label-extra {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.label-extra:last-child {
+  border-bottom: none;
+}
+
+.label-extra input[type="radio"] {
+  flex-shrink: 0;
+}
+
+.info-extra {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.descricao-extra {
+  flex: 1;
+  text-align: left;
+  font-size: 1rem;
+  color: #333;
+}
+
+.opcao-valor {
+  font-weight: bold;
+  color: #10b981;
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+
+.opcional {
+  font-size: 0.85rem;
+  color: #facc15;
+  margin-left: 12px;
+}

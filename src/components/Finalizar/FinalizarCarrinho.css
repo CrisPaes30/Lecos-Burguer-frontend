@@ -1,0 +1,178 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 45vh; /* Ajuste para ocupar a parte superior */
+    background-color: #f0f4f8;
+  }
+
+  .burguerTopo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7; /* Esmaecimento da imagem */
+    display: block;
+  }
+
+  .logoCentral {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza o logo */
+    max-width: 10%; /* Ajuste o tamanho conforme necessário */
+    opacity: 0.9; /* Suavidade no logo */
+  }
+
+  .nomeLeco {
+    position: absolute;
+    top: 90%; /* Ajuste para ficar logo abaixo do logo */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rex; /* Ajuste conforme necessário */
+    color: white;
+    font-weight: bold;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 50px; /* aumenta o espaço entre os passos */
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.circle.active {
+  background-color: #d32f2f; /* Vermelho ativo */
+}
+
+.line {
+  width: 80px; /* linha mais longa */
+  height: 3px;
+  background-color: #ccc;
+}
+
+.line.active {
+  background-color: #d32f2f;
+}
+
+.step span {
+  margin-top: 8px; /* mais espaço entre círculo e texto */
+  color: #333;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+
+.step {
+  font-size: 1.2rem;
+  color: #999;
+}
+
+.step.active {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.stepContent {
+  max-width: 700px;
+  margin: 5rem auto; /* mais espaço em cima e embaixo */
+  background: #fff;
+  padding: 2.5rem; /* aumenta o espaçamento interno */
+  border-radius: 15px; /* cantos bem arredondados */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* sombra maior e mais suave */
+}
+
+.stepContent p {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.stepContent p:last-child {
+  border-bottom: none; /* remove linha do último item */
+}
+
+.stepContent p strong {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.stepContent h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.stepContent input {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.stepContent button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+  background-color: #d32f2f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.stepContent button.finalizar {
+  background-color: #388e3c;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-pedido {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-pedido:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.card-header {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.detalhes-pedido p {
+  margin: 4px 0;
+  color: #555;
+  font-size: 0.95rem;
+}
