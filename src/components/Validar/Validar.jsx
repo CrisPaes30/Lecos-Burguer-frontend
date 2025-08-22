@@ -43,7 +43,7 @@ const ValidarCadastro = () => {
         <div className="validar-success">
           <h2>🎉 Cadastro confirmado!</h2>
           <p>Agora você já pode fazer login no Leco’s Burguer.</p>
-          <a href="/pedidos" className="btn-login">Ir para login</a>
+          <a href="/login" className="btn-login">Ir para login</a>
         </div>
       )}
       {status === "error" && (

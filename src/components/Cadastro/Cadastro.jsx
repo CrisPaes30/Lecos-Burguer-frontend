@@ -195,9 +195,9 @@ const Cadastro = () => {
         <>
           {showModalSucesso && (
             <ModalSucesso
-              mensagem="Cadastro realizado com sucesso! \n Encaminhamos um email para validação!!"
-              //onConfirm={() => (window.location.href = "/pedidos")}
-              onConfirm={() => navigate("/pedidos")}
+              mensagem="Cadastro realizado com sucesso!
+              Encaminhamos um email para validação!!"
+              onConfirm={() => navigate("/login")}
             />
           )}
 

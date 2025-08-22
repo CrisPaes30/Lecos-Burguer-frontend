@@ -80,3 +80,44 @@
   margin-top: 10px;
   font-size: 14px;
 }
+
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #fff;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper .form-input {
+  flex: 1;
+  padding-right: 40px; /* espaço para o olho */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #9ca3af; /* cinza claro elegante */
+  transition: color 0.2s;
+}
+
+.toggle-password:hover {
+  color: #facc15; /* amarelo do botão quando passar o mouse */
+}

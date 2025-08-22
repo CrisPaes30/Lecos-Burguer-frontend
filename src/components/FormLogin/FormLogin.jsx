@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import "./FormLogin.css";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { login as loginService } from "../../keycloak/authService";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const FormLogin = () => {
   const [name, setName] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -26,6 +30,7 @@ const FormLogin = () => {
     setError("");
 
     try {
+      setLoading(true);
       const data = await loginService(name, senha);
 
       if (!data?.access_token) {
@@ -33,11 +38,20 @@ const FormLogin = () => {
         return;
       }
 
-      localStorage.setItem("token", data.access_token);
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("refresh_token", data.refresh_token ?? "");
+      localStorage.setItem("token_type", data.token_type ?? "Bearer");
+      localStorage.setItem("expires_in", String(data.expires_in ?? ""));
+      axios.defaults.headers.common.Authorization = `${
+        data.token_type ?? "Bearer"
+      } ${data.access_token}`;
+
       navigate("/pedidos");
     } catch (err) {
       console.error("Erro ao autenticar:", err);
       setError("Usuário ou senha inválidos.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -46,19 +60,28 @@ const FormLogin = () => {
       <h2 className="form-title">MEU LECO´S LOGIN</h2>
       <form className="form-fields" onSubmit={handleSubmit}>
         <input
-          type="email"
-          placeholder="E-mail"
+          placeholder="E-mail ou Usuário"
           className="form-input"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <input
-          type="password"
-          placeholder="Senha"
-          className="form-input"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-        />
+
+        {/* Campo de senha com ícone */}
+        <div className="password-wrapper">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Senha"
+            className="form-input"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
+          <span
+            className="toggle-password"
+            onClick={() => setShowPassword((prev) => !prev)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
 
         <p className="form-error">{error || "\u00A0"}</p>
 
@@ -67,7 +90,9 @@ const FormLogin = () => {
           <Link to="/esqueci-senha" className="form-link">Esqueci a senha</Link>
         </div>
 
-        <button type="submit" className="form-button">Entrar</button>
+        <button type="submit" className="form-button" disabled={loading}>
+          {loading ? <span className="spinner"></span> : "Entrar"}
+        </button>
       </form>
     </div>
   );

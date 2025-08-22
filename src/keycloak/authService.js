@@ -8,6 +8,8 @@ export const login = async (username, password) => {
       username,
       password
     });
+    console.log("Retorno da api:", response.status, response.data);
+
     return response.data;
   } catch (error) {
     throw new Error("Erro ao autenticar usuário.");
